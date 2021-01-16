@@ -1,11 +1,11 @@
+import leftContent from './modules/leftside';
+import input from './modules/input'
+import rightContent from './modules/rightside';
 
-
- function component() {
-   const content = document.querySelector('.content');
-
-   content.innerHTML = 'test';
-
-
- }
+ function componentContent() {
+  leftContent();
+  input();
+  rightContent();
+ };
  
- component();
+ componentContent();

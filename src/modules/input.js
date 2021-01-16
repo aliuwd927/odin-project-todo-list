@@ -5,10 +5,15 @@ Input Value Should contain the following
 - Due Date
 - Priority
 */
+import projects from './projects';
 
 function input(){
-
+    //
     const leftContent = document.querySelector('.leftContent');
+
+    const inputContainer = document.createElement('div');
+    inputContainer.classList.add('inputContainer');
+
 
     const todoInputTitle = document.createElement('input');
     todoInputTitle.classList.add('inputTitle');
@@ -22,10 +27,21 @@ function input(){
     const todoPriority = document.createElement('input');
     todoPriority.classList.add('inputPriority');
 
-    leftContent.appendChild(todoInputTitle);
-    leftContent.appendChild(todoInputDescription);
-    leftContent.appendChild(todoDueDate);
-    leftContent.appendChild(todoPriority);
+    const submitButton = document.createElement('button');
+    submitButton.classList.add('addToDoProjects');
+    submitButton.textContent = 'add to projects';
+    submitButton.addEventListener('click',()=>{
+        projects();
+    })
+
+    //
+    inputContainer.appendChild(todoInputTitle);
+    inputContainer.appendChild(todoInputDescription);
+    inputContainer.appendChild(todoDueDate);
+    inputContainer.appendChild(todoPriority);
+    inputContainer.appendChild(submitButton);
+    leftContent.appendChild(inputContainer);
+    
 
 
 }

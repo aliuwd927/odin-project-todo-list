@@ -5,10 +5,11 @@ Input Value Should contain the following
 - Due Date
 - Priority
 */
-import projects from './projects';
 
-function input(){
-    //
+
+import {projects} from './projects';
+
+const input = () =>{
     const leftContent = document.querySelector('.leftContent');
 
     const inputContainer = document.createElement('div');
@@ -41,9 +42,16 @@ function input(){
     inputContainer.appendChild(todoPriority);
     inputContainer.appendChild(submitButton);
     leftContent.appendChild(inputContainer);
-    
 
-
+    return{
+        leftContent,
+        inputContainer,
+        todoInputTitle,
+        todoInputDescription,
+        todoDueDate,
+        todoPriority,
+        submitButton
+    }
 }
 
-export default input;
+export {input};

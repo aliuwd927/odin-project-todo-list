@@ -1,7 +1,6 @@
 //Pass in input value from input.js to projects.js
 
-function projects(){
-
+const projects = () =>{
     const leftContent = document.querySelector('.leftContent');
 
     const projectContainer = document.createElement('div');
@@ -15,9 +14,22 @@ function projects(){
     removeCurrentProject.classList.add('removeCurrentProject');
     removeCurrentProject.textContent ='-';
 
+    const test = () =>{
+        console.log('test');
+    }
+
     leftContent.appendChild(projectContainer);
     projectContainer.appendChild(addSubTask);
     projectContainer.appendChild(removeCurrentProject);
+
+    return{
+        leftContent,
+        projectContainer,
+        addSubTask,
+        removeCurrentProject,
+        test
+    }
+
 }
 
-export default projects;
+export {projects};

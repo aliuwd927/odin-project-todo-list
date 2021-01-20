@@ -31,9 +31,11 @@ const input = () =>{
     const submitButton = document.createElement('button');
     submitButton.classList.add('addToDoProjects');
     submitButton.textContent = 'add to projects';
+    
     submitButton.addEventListener('click',()=>{
         projects();
-    })
+        
+    });
 
     //
     inputContainer.appendChild(todoInputTitle);

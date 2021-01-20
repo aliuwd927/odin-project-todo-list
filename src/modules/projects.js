@@ -14,7 +14,7 @@ const projects = () =>{
     removeCurrentProject.classList.add('removeCurrentProject');
     removeCurrentProject.textContent ='-';
 
-    const test = () =>{
+    const testOne = () =>{
         console.log('test');
     }
 
@@ -27,9 +27,9 @@ const projects = () =>{
         projectContainer,
         addSubTask,
         removeCurrentProject,
-        test
+        testOne,
     }
 
-}
+};
 
 export {projects};

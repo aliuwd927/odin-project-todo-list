@@ -1,6 +1,27 @@
 //Pass in input value from input.js to projects.js
 
 const projects = () =>{
+
+    const submitButton = document.querySelector('.addToDoProjects');
+
+    const array = [];
+
+    submitButton.addEventListener('click', () =>{
+
+    const todoInputTitle = document.querySelector('.inputTitle').value;
+    const todoInputDescription = document.querySelector('.inputDescription').value;
+    //console.log(todoInputTitle,todoInputDescription);
+    
+    const testOne = (title,description) =>{
+        array.push({title,description});
+        console.log(array);
+    };
+
+    testOne(todoInputTitle,todoInputDescription);
+    
+
+
+
     const leftContent = document.querySelector('.leftContent');
 
     const projectContainer = document.createElement('div');
@@ -14,21 +35,12 @@ const projects = () =>{
     removeCurrentProject.classList.add('removeCurrentProject');
     removeCurrentProject.textContent ='-';
 
-    const testOne = () =>{
-        console.log('test');
-    }
 
     leftContent.appendChild(projectContainer);
     projectContainer.appendChild(addSubTask);
     projectContainer.appendChild(removeCurrentProject);
 
-    return{
-        leftContent,
-        projectContainer,
-        addSubTask,
-        removeCurrentProject,
-        testOne,
-    }
+    });
 
 };
 

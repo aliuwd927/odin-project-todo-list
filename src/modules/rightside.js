@@ -8,10 +8,6 @@ const rightContent = () =>{
 
     getContentElement.appendChild(rightContent);
 
-    return{
-        getContentElement,
-        rightContent
-    }
 }
 
 export {rightContent};

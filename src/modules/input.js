@@ -7,8 +7,6 @@ Input Value Should contain the following
 */
 
 
-import {projects} from './projects';
-
 const input = () =>{
     const leftContent = document.querySelector('.leftContent');
 
@@ -31,13 +29,7 @@ const input = () =>{
     const submitButton = document.createElement('button');
     submitButton.classList.add('addToDoProjects');
     submitButton.textContent = 'add to projects';
-    
-    submitButton.addEventListener('click',()=>{
-        projects();
-        
-    });
 
-    //
     inputContainer.appendChild(todoInputTitle);
     inputContainer.appendChild(todoInputDescription);
     inputContainer.appendChild(todoDueDate);
@@ -45,15 +37,6 @@ const input = () =>{
     inputContainer.appendChild(submitButton);
     leftContent.appendChild(inputContainer);
 
-    return{
-        leftContent,
-        inputContainer,
-        todoInputTitle,
-        todoInputDescription,
-        todoDueDate,
-        todoPriority,
-        submitButton
-    }
 }
 
 export {input};

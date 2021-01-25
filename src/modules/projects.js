@@ -41,6 +41,8 @@ const projects = () =>{
     projectContainer.appendChild(addSubTask);
     projectContainer.appendChild(removeCurrentProject);
     displayProjects();
+    });
+
 };
 
 const array = [];

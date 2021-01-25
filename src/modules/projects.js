@@ -18,7 +18,7 @@ const projects = () =>{
 
     const todoInputTitle = document.querySelector('.inputTitle').value;
     const todoInputDescription = document.querySelector('.inputDescription').value;
-
+        
     const leftContent = document.querySelector('.leftContent');
 
     const projectContainer = document.createElement('div');
@@ -32,10 +32,7 @@ const projects = () =>{
     removeCurrentProject.classList.add('removeCurrentProject');
     removeCurrentProject.textContent ='-';
 
-    
-    displayProjects();
     array.push(new TestOne(todoInputTitle,todoInputDescription));
-    //console.log(array);
 
     document.querySelector('.inputTitle').value = '';
     document.querySelector('.inputDescription').value = '';
@@ -43,9 +40,7 @@ const projects = () =>{
     leftContent.appendChild(projectContainer);
     projectContainer.appendChild(addSubTask);
     projectContainer.appendChild(removeCurrentProject);
-
-    });
-
+    displayProjects();
 };
 
 const array = [];

@@ -19,28 +19,16 @@ const projects = () =>{
     const todoInputTitle = document.querySelector('.inputTitle').value;
     const todoInputDescription = document.querySelector('.inputDescription').value;
         
-    const leftContent = document.querySelector('.leftContent');
-
-    const projectContainer = document.createElement('div');
-    projectContainer.classList.add('projectContainer');
-    
-    const addSubTask = document.createElement('button');
-    addSubTask.classList.add('addSubTask');
-    addSubTask.textContent = '+';
-
-    const removeCurrentProject = document.createElement('button');
-    removeCurrentProject.classList.add('removeCurrentProject');
-    removeCurrentProject.textContent ='-';
 
     array.push(new TestOne(todoInputTitle,todoInputDescription));
 
     document.querySelector('.inputTitle').value = '';
     document.querySelector('.inputDescription').value = '';
 
-    leftContent.appendChild(projectContainer);
-    projectContainer.appendChild(addSubTask);
-    projectContainer.appendChild(removeCurrentProject);
-    displayProjects();
+    for(let i = 0; i < array.length; i++){
+        displayProjects(array[i]);
+    }
+    
     });
 
 };

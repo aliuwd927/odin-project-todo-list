@@ -1,7 +1,7 @@
 //Pass in input value from input.js to projects.js
 
 import {displayProjects} from './displayProjects';
-
+import {removeChild} from './displayProjects';
 const projects = () =>{
 
     const submitButton = document.querySelector('.addToDoProjects');
@@ -25,13 +25,19 @@ const projects = () =>{
     document.querySelector('.inputTitle').value = '';
     document.querySelector('.inputDescription').value = '';
 
+   
+    
     for(let i = 0; i < array.length; i++){
         displayProjects(array[i]);
-    }
-    
+     }
+
+     
     });
 
+
 };
+
+
 
 const array = [];
 

@@ -1,5 +1,4 @@
 
-
 const leftContent = () => {
     const getContentElement = document.querySelector('.content');
 

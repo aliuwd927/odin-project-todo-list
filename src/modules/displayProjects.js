@@ -1,13 +1,19 @@
+import {array} from './projects';
 
+const renderItems = () =>{
+    removeChild();
+    for(let i = 0; i < array.length; i++){
+        displayProjects(array[i]);
+     };
+};
 
 const displayProjects = (renderArrayItems) => {
-    //console.log(renderArrayItems + 'test');
-    
-    const leftContent = document.querySelector('.leftContent');
+ 
+    const leftBtmContainer = document.querySelector('.leftBottomContainer');
 
-    //render under leftContent
+    //render under leftBtmContainer
     const projectContainer = document.createElement('div');
-    
+
     //render under projectContainer
     const projectAddedTitle = document.createElement('div');
     const projectAddedDescription = document.createElement('div');
@@ -15,7 +21,7 @@ const displayProjects = (renderArrayItems) => {
     const projectAddedPrority = document.createElement('div');
     const addSubTask = document.createElement('button');
     const removeCurrentProject = document.createElement('button');
-    
+
     //classList
     projectContainer.classList.add('projectContainer');
     projectAddedTitle.classList.add('projectAddedTitle');
@@ -24,12 +30,12 @@ const displayProjects = (renderArrayItems) => {
     projectAddedPrority.classList.add('projectAddedPrority');
     addSubTask.classList.add('addSubTask');
     removeCurrentProject.classList.add('removeCurrentProject');
-   
+
     //textContent
     projectAddedTitle.textContent = renderArrayItems.title;
     projectAddedDescription.textContent = renderArrayItems.description;
-    projectAddedDate.textContent = renderArrayItems.date;
-    projectAddedPrority.textContent = renderArrayItems.priority;
+    //projectAddedDate.textContent = renderArrayItems.date;
+    //projectAddedPrority.textContent = renderArrayItems.priority;
     addSubTask.textContent = '+';
     removeCurrentProject.textContent ='-';
 
@@ -40,17 +46,16 @@ const displayProjects = (renderArrayItems) => {
     projectContainer.appendChild(projectAddedPrority);
     projectContainer.appendChild(addSubTask);
     projectContainer.appendChild(removeCurrentProject);
+    leftBtmContainer.appendChild(projectContainer);
 
-    leftContent.appendChild(projectContainer);
-  
 };
 
 const removeChild = () =>{
-    const projectContainer = document.querySelector('.projectContainer');
-    while(projectContainer.firstChild){
-        projectContainer.removeChild(projectContainer.firstChild);
+    const leftBtmContainer = document.querySelector('.leftBottomContainer');
+    while(leftBtmContainer.firstChild){
+        leftBtmContainer.removeChild(leftBtmContainer.firstChild);
     };
 };
 
 export {displayProjects};
-export {removeChild};
+export {renderItems};

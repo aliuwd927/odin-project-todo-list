@@ -1,7 +1,5 @@
-//Pass in input value from input.js to projects.js
+import{renderItems} from './displayProjects';
 
-import {displayProjects} from './displayProjects';
-import {removeChild} from './displayProjects';
 const projects = () =>{
 
     const submitButton = document.querySelector('.addToDoProjects');
@@ -11,7 +9,6 @@ const projects = () =>{
             this.title = title;
             this.description = description
         }
-
     };
 
     submitButton.addEventListener('click', () =>{
@@ -19,25 +16,17 @@ const projects = () =>{
     const todoInputTitle = document.querySelector('.inputTitle').value;
     const todoInputDescription = document.querySelector('.inputDescription').value;
         
-
     array.push(new TestOne(todoInputTitle,todoInputDescription));
 
     document.querySelector('.inputTitle').value = '';
     document.querySelector('.inputDescription').value = '';
-
-   
-    
-    for(let i = 0; i < array.length; i++){
-        displayProjects(array[i]);
-     }
-
      
+    renderItems();
+
     });
 
 
 };
-
-
 
 const array = [];
 

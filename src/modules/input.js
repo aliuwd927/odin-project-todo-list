@@ -6,7 +6,6 @@ Input Value Should contain the following
 - Priority
 */
 
-
 const input = () =>{
     const leftContent = document.querySelector('.leftContent');
 
@@ -30,12 +29,16 @@ const input = () =>{
     submitButton.classList.add('addToDoProjects');
     submitButton.textContent = 'add to projects';
 
+    const leftBottomContainer = document.createElement('div');
+    leftBottomContainer.classList.add('leftBottomContainer');
+
     inputContainer.appendChild(todoInputTitle);
     inputContainer.appendChild(todoInputDescription);
     inputContainer.appendChild(todoDueDate);
     inputContainer.appendChild(todoPriority);
     inputContainer.appendChild(submitButton);
     leftContent.appendChild(inputContainer);
+    leftContent.appendChild(leftBottomContainer);
 
 }
 

@@ -34,8 +34,8 @@ const displayProjects = (renderArrayItems) => {
     //textContent
     projectAddedTitle.textContent = renderArrayItems.title;
     projectAddedDescription.textContent = renderArrayItems.description;
-    //projectAddedDate.textContent = renderArrayItems.date;
-    //projectAddedPrority.textContent = renderArrayItems.priority;
+    projectAddedDate.textContent = renderArrayItems.date;
+    projectAddedPrority.textContent = renderArrayItems.priority;
     addSubTask.textContent = '+';
     removeCurrentProject.textContent ='-';
 

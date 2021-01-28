@@ -1,10 +1,12 @@
 import {array} from './projects';
+import { subTask } from './subTask';
 
 const renderItems = () =>{
     removeChild();
     for(let i = 0; i < array.length; i++){
         displayProjects(array[i]);
      };
+
 };
 
 const displayProjects = (renderArrayItems) => {
@@ -47,6 +49,14 @@ const displayProjects = (renderArrayItems) => {
     projectContainer.appendChild(addSubTask);
     projectContainer.appendChild(removeCurrentProject);
     leftBtmContainer.appendChild(projectContainer);
+
+    addSubTask.addEventListener('click', () => {
+        subTask();
+    });
+
+    removeCurrentProject.addEventListener('click', () =>{
+        subTask();
+    });
 
 };
 

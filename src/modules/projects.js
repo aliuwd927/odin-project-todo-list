@@ -22,7 +22,6 @@ const projects = () =>{
     document.querySelector('.inputDescription').value = '';
      
     renderItems();
-
     });
 
 

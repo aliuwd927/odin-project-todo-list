@@ -8,19 +8,29 @@ const subTask = () => {
     const subTaskBtmContainer = document.createElement('div');
 
     //Render under subTaskTopContainer
-    const task0 = document.createElement('input');
-    const task1 = document.createElement('input');
-    const task2 = document.createElement('input');
-    const task3 = document.createElement('input');
+    const taskInputTitle = document.createElement('input');
+    const taskInputDescription = document.createElement('input');
+    const taskInputDate = document.createElement('input');
+    const taskInputPriority = document.createElement('input');
+    const addTask = document.createElement('button');
 
     //classList
+    taskInputPriority.classList.add('taskInputPriority');
+    taskInputDate.classList.add('taskInputDate');
+    taskInputDescription.classList.add('taskInputDescription');
+    taskInputTitle.classList.add('taskInputTitle');
     subTaskTopContainer.classList.add('subTaskTopContainer');
+    subTaskBtmContainer.classList.add('subTaskBtmContainer');
+
+    //textContent
+    addTask.textContent = 'Add Task';
 
     //Render under subTaskBtmContainer
-    subTaskTopContainer.appendChild(task3);
-    subTaskTopContainer.appendChild(task2);
-    subTaskTopContainer.appendChild(task1);
-    subTaskTopContainer.appendChild(task0);
+    subTaskTopContainer.appendChild(taskInputTitle);
+    subTaskTopContainer.appendChild(taskInputDescription);
+    subTaskTopContainer.appendChild(taskInputDate);
+    subTaskTopContainer.appendChild(taskInputPriority);
+    subTaskTopContainer.appendChild(addTask);
     rightContent.appendChild(subTaskBtmContainer);
     rightContent.appendChild(subTaskTopContainer);
 

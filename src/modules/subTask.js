@@ -1,3 +1,4 @@
+import { addSubTask } from "./addSubTask";
 
 const subTask = () => {
 
@@ -12,27 +13,38 @@ const subTask = () => {
     const taskInputDescription = document.createElement('input');
     const taskInputDate = document.createElement('input');
     const taskInputPriority = document.createElement('input');
-    const addTask = document.createElement('button');
+    const addTaskBtn = document.createElement('button');
 
     //classList
     taskInputPriority.classList.add('taskInputPriority');
     taskInputDate.classList.add('taskInputDate');
     taskInputDescription.classList.add('taskInputDescription');
     taskInputTitle.classList.add('taskInputTitle');
+    addTaskBtn.classList.add('addTaskBtn');
     subTaskTopContainer.classList.add('subTaskTopContainer');
     subTaskBtmContainer.classList.add('subTaskBtmContainer');
 
     //textContent
-    addTask.textContent = 'Add Task';
+    addTaskBtn.textContent = 'Add Task';
 
     //Render under subTaskBtmContainer
     subTaskTopContainer.appendChild(taskInputTitle);
     subTaskTopContainer.appendChild(taskInputDescription);
     subTaskTopContainer.appendChild(taskInputDate);
     subTaskTopContainer.appendChild(taskInputPriority);
-    subTaskTopContainer.appendChild(addTask);
-    rightContent.appendChild(subTaskBtmContainer);
+    subTaskTopContainer.appendChild(addTaskBtn);
     rightContent.appendChild(subTaskTopContainer);
+    rightContent.appendChild(subTaskBtmContainer);
+
+    addTaskBtn.addEventListener('click', ()=>{
+        
+        const taskInputTitle = document.querySelector('.taskInputTitle').value;
+        const taskInputDescription = document.querySelector('.taskInputDescription').value;
+        
+        
+        
+        addSubTask();
+    })
 
 };
 

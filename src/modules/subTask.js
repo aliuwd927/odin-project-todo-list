@@ -1,4 +1,5 @@
-import { addSubTask } from "./addSubTask";
+import { displaySubTask } from "./addSubTask";
+import {renderSubTask} from "./addSubTask";
 
 const subTask = () => {
 
@@ -36,16 +37,29 @@ const subTask = () => {
     rightContent.appendChild(subTaskTopContainer);
     rightContent.appendChild(subTaskBtmContainer);
 
+    class TestTwo{
+        constructor(title,description){
+            this.title = title;
+            this.description = description;
+        }
+    }
+
     addTaskBtn.addEventListener('click', ()=>{
         
         const taskInputTitle = document.querySelector('.taskInputTitle').value;
         const taskInputDescription = document.querySelector('.taskInputDescription').value;
         
+        subTaskArray.push(new TestTwo(taskInputTitle,taskInputDescription));
         
-        
-        addSubTask();
+        renderSubTask();
+
+        document.querySelector('.taskInputTitle').value = '';
+        document.querySelector('.taskInputDescription').value = '';
     })
 
 };
+ 
+const subTaskArray = [];
 
 export {subTask};
+export {subTaskArray};

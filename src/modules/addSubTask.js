@@ -16,23 +16,34 @@ const displaySubTask = (renderSubTaskItems) => {
     const subTaskContainer = document.createElement('div');
     const subTaskTitle = document.createElement('div');
     const subTaskDescription = document.createElement('div');
+    const inputCheckContainer = document.createElement('div');
 
+    //render under inputCheckContainer
+    const inputCheckComplete = document.createElement('input');
+    const inputCheckNotComplete = document.createElement('input');
     
     //classList
     subTaskContainer.classList.add('subTaskContainer');
     subTaskTitle.classList.add('subTaskTitle');
     subTaskDescription.classList.add('subTaskDescription');
 
-
+    //set attributes
+    inputCheckComplete.setAttribute('type','checkbox');
+    inputCheckNotComplete.setAttribute('type','checkbox');
 
     //textContent
     subTaskTitle.textContent = renderSubTaskItems.title;
     subTaskDescription.textContent = renderSubTaskItems.description;
+    inputCheckComplete.innerHTML = `<p>Completed</p>`;
+    inputCheckNotComplete.innerHTML = `<p>Not Completed</p>`;
 
 
     //append childs
     subTaskContainer.appendChild(subTaskTitle);
     subTaskContainer.appendChild(subTaskDescription);
+    subTaskContainer.appendChild(inputCheckContainer);
+    inputCheckContainer.appendChild(inputCheckComplete);
+    inputCheckContainer.appendChild(inputCheckNotComplete);
     subTaskBtmContainer.appendChild(subTaskContainer);
 
 

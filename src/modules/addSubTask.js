@@ -26,6 +26,7 @@ const displaySubTask = (renderSubTaskItems) => {
     subTaskContainer.classList.add('subTaskContainer');
     subTaskTitle.classList.add('subTaskTitle');
     subTaskDescription.classList.add('subTaskDescription');
+    inputCheckContainer.classList.add('inputCheckContainer');
 
     //set attributes
     inputCheckComplete.setAttribute('type','checkbox');
@@ -34,8 +35,8 @@ const displaySubTask = (renderSubTaskItems) => {
     //textContent
     subTaskTitle.textContent = renderSubTaskItems.title;
     subTaskDescription.textContent = renderSubTaskItems.description;
-    inputCheckComplete.innerHTML = `<p>Completed</p>`;
-    inputCheckNotComplete.innerHTML = `<p>Not Completed</p>`;
+    inputCheckComplete.innerHTML = 'Completed';
+    inputCheckNotComplete.innerHTML = 'Not Completed';
 
 
     //append childs

@@ -1,5 +1,6 @@
 import {array} from './projects';
 import { subTask } from './subTask';
+import {checkToggled} from'./checkToggle';
 
 const renderItems = () =>{
     removeChild();
@@ -36,6 +37,7 @@ const displayProjects = (renderArrayItems) => {
 
     //classList
     checkToggleContainer.classList.add('checkToggleContainer');
+    checkToggle.classList.add('checkToggle');
     projectContainer.classList.add('projectContainer');
     projectTextContainer.classList.add('projectTextContainer');
     projectAddedTitle.classList.add('projectAddedTitle');
@@ -69,11 +71,15 @@ const displayProjects = (renderArrayItems) => {
 
     addSubTask.addEventListener('click', () => {
         subTask();
-    });
+    },{once:true});
 
     removeCurrentProject.addEventListener('click', () =>{
-        subTask();
-    });
+
+    },{once:true});
+
+    checkToggle.addEventListener('click',() =>{
+        checkToggled();
+    })
 
 };
 
@@ -83,6 +89,7 @@ const removeChild = () =>{
         leftBtmContainer.removeChild(leftBtmContainer.firstChild);
     };
 };
+
 
 export {displayProjects};
 export {renderItems};

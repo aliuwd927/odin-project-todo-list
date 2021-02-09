@@ -1,7 +1,7 @@
 
 const localStorage = () => {
 
-    const myStorage = window.localStorage;
+    
 
 };
 

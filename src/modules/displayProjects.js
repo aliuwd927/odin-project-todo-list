@@ -1,6 +1,7 @@
 import {array} from './projects';
 import { subTask } from './subTask';
 import {checkToggled} from'./checkToggle';
+import {test} from './test';
 
 const renderItems = () =>{
     removeChild();
@@ -74,14 +75,35 @@ const displayProjects = (renderArrayItems) => {
     },{once:true});
 
     removeCurrentProject.addEventListener('click', () =>{
+        console.log(test.text);
+    });
 
-    },{once:true});
+    const projectElem = document.querySelectorAll('.checkToggle');
 
+    for(let i = 0; i < projectElem.length; i++){
+        checkToggle.addEventListener('click',() =>{
+            checkToggled();
+        });
+    }    
+
+    //for loop this to make each box trigger event
+
+    /*
     checkToggle.addEventListener('click',() =>{
+      
         checkToggled();
-    })
+    });
+    */
+
+    const classListElements = document.querySelectorAll('.projectContainer');
+
+    for(let i = 0; i < classListElements.length; i++){
+        classListElements[i].id = 'prj' + i;
+    }
+
 
 };
+
 
 const removeChild = () =>{
     const leftBtmContainer = document.querySelector('.leftBottomContainer');

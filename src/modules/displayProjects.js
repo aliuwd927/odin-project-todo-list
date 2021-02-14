@@ -81,7 +81,7 @@ const displayProjects = (renderArrayItems) => {
     const projectElem = document.querySelectorAll('.checkToggle');
 
     for(let i = 0; i < projectElem.length; i++){
-        checkToggle.addEventListener('click',() =>{
+        projectElem[i].addEventListener('click',() =>{
             checkToggled();
         });
     }    

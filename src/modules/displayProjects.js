@@ -18,13 +18,6 @@ const displayProjects = (renderArrayItems) => {
     //render under leftBtmContainer
     const projectContainer = document.createElement('div');
 
-    //render checkToggleContainer
-    const checkToggleContainer = document.createElement('div');
-    const checkToggle = document.createElement('input');
-
-    //set Attribute
-    checkToggle.setAttribute('type', 'checkbox');
-
     //render projectTextContainer
     const projectTextContainer = document.createElement('div');
     const projectAddedTitle = document.createElement('div');
@@ -37,8 +30,6 @@ const displayProjects = (renderArrayItems) => {
     const removeCurrentProject = document.createElement('button');
 
     //classList
-    checkToggleContainer.classList.add('checkToggleContainer');
-    checkToggle.classList.add('checkToggle');
     projectContainer.classList.add('projectContainer');
     projectTextContainer.classList.add('projectTextContainer');
     projectAddedTitle.classList.add('projectAddedTitle');
@@ -58,8 +49,6 @@ const displayProjects = (renderArrayItems) => {
     removeCurrentProject.textContent ='-';
 
     //projectContainer.appendChild(projectAdded);
-    projectContainer.appendChild(checkToggleContainer);
-    checkToggleContainer.appendChild(checkToggle);
     projectTextContainer.appendChild(projectAddedTitle);
     projectTextContainer.appendChild(projectAddedDescription);
     projectTextContainer.appendChild(projectAddedDate);
@@ -78,22 +67,13 @@ const displayProjects = (renderArrayItems) => {
         console.log(test.text);
     });
 
-    const projectElem = document.querySelectorAll('.checkToggle');
+    const projectElem = document.querySelectorAll('.projectContainer');
 
     for(let i = 0; i < projectElem.length; i++){
         projectElem[i].addEventListener('click',() =>{
-            checkToggled();
+           console.log(projectElem[i]);
         });
     }    
-
-    //for loop this to make each box trigger event
-
-    /*
-    checkToggle.addEventListener('click',() =>{
-      
-        checkToggled();
-    });
-    */
 
     const classListElements = document.querySelectorAll('.projectContainer');
 

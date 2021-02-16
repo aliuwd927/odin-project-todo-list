@@ -6,6 +6,7 @@ const subTask = () => {
     const rightContent = document.querySelector('.rightContent');
 
     //Append subTaskTop/Btm Container under rightContent
+    const mainContent = document.createElement('div');
     const subTaskTopContainer = document.createElement('div');
     const subTaskBtmContainer = document.createElement('div');
 
@@ -17,6 +18,7 @@ const subTask = () => {
     const addTaskBtn = document.createElement('button');
 
     //classList
+    mainContent.classList.add('mainContent');
     taskInputPriority.classList.add('taskInputPriority');
     taskInputDate.classList.add('taskInputDate');
     taskInputDescription.classList.add('taskInputDescription');
@@ -34,8 +36,9 @@ const subTask = () => {
     subTaskTopContainer.appendChild(taskInputDate);
     subTaskTopContainer.appendChild(taskInputPriority);
     subTaskTopContainer.appendChild(addTaskBtn);
-    rightContent.appendChild(subTaskTopContainer);
-    rightContent.appendChild(subTaskBtmContainer);
+    mainContent.appendChild(subTaskTopContainer);
+    mainContent.appendChild(subTaskBtmContainer);
+    rightContent.appendChild(mainContent);
 
     class TestTwo{
         constructor(title,description){

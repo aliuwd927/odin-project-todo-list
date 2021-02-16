@@ -7,7 +7,12 @@ const projects = () =>{
     class TestOne {
         constructor(title,description){
             this.title = title;
-            this.description = description
+            this.description = description;
+            this.consoleThis();
+        }
+
+        consoleThis(){
+            list.push({id: Date.now().toString(), title: this.title, description: this.description});
         }
     };
 
@@ -27,7 +32,11 @@ const projects = () =>{
 
 };
 
+
+//List
 const array = [];
+const list = [];
 
 export {projects};
 export {array};
+export {list};

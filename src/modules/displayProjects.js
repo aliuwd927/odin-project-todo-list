@@ -1,15 +1,14 @@
-import {array} from './projects';
 import { subTask } from './subTask';
-import {checkToggled} from'./checkToggle';
 import {test} from './test';
+import {list} from './projects';
 
 const renderItems = () =>{
     removeChild();
-    for(let i = 0; i < array.length; i++){
-        displayProjects(array[i]);
+    for(let i = 0; i < list.length; i++){
+        displayProjects(list[i]);
      };
-
 };
+
 
 const displayProjects = (renderArrayItems) => {
  
@@ -69,12 +68,14 @@ const displayProjects = (renderArrayItems) => {
 
     const projectElem = document.querySelectorAll('.projectContainer');
 
+    
     for(let i = 0; i < projectElem.length; i++){
         projectElem[i].addEventListener('click',() =>{
            console.log(projectElem[i]);
+           //test.showHideToggle();
         });
     }    
-
+    
     const classListElements = document.querySelectorAll('.projectContainer');
 
     for(let i = 0; i < classListElements.length; i++){
@@ -87,9 +88,11 @@ const displayProjects = (renderArrayItems) => {
 
 const removeChild = () =>{
     const leftBtmContainer = document.querySelector('.leftBottomContainer');
+
     while(leftBtmContainer.firstChild){
         leftBtmContainer.removeChild(leftBtmContainer.firstChild);
     };
+
 };
 
 

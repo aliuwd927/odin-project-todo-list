@@ -2,14 +2,12 @@
 
 
 let test = {
-    trigger: function(){
-        console.log('triggered');
+    showHideToggle: function(){
+        const hideElement = document.querySelector('.mainContent');
+
+        hideElement.classList.toggle('show');
     },
 
-    text: {
-        color: "white",
-        thickness: 1
-    }
 }
 
 

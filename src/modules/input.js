@@ -16,14 +16,14 @@ const input = () =>{
     const todoInputTitle = document.createElement('input');
     todoInputTitle.classList.add('inputTitle');
     
-    const todoInputDescription = document.createElement('input');
-    todoInputDescription.classList.add('inputDescription');
+    //const todoInputDescription = document.createElement('input');
+    //todoInputDescription.classList.add('inputDescription');
 
-    const todoDueDate = document.createElement('input');
-    todoDueDate.classList.add('inputDueDate');
+    //const todoDueDate = document.createElement('input');
+    //todoDueDate.classList.add('inputDueDate');
 
-    const todoPriority = document.createElement('input');
-    todoPriority.classList.add('inputPriority');
+    //const todoPriority = document.createElement('input');
+    //todoPriority.classList.add('inputPriority');
 
     const submitButton = document.createElement('button');
     submitButton.classList.add('addToDoProjects');
@@ -33,9 +33,9 @@ const input = () =>{
     leftBottomContainer.classList.add('leftBottomContainer');
 
     inputContainer.appendChild(todoInputTitle);
-    inputContainer.appendChild(todoInputDescription);
-    inputContainer.appendChild(todoDueDate);
-    inputContainer.appendChild(todoPriority);
+    //inputContainer.appendChild(todoInputDescription);
+    //inputContainer.appendChild(todoDueDate);
+    //inputContainer.appendChild(todoPriority);
     inputContainer.appendChild(submitButton);
     leftContent.appendChild(inputContainer);
     leftContent.appendChild(leftBottomContainer);

@@ -1,12 +1,17 @@
 import { subTask } from './subTask';
-import {test} from './test';
-import {list} from './projects';
+import {lists} from './projects';
 
 const renderItems = () =>{
     removeChild();
-    for(let i = 0; i < list.length; i++){
-        displayProjects(list[i]);
+    /*
+    for(let i = 0; i < lists.length; i++){
+        displayProjects(lists[i]);
      };
+     */
+
+     lists.forEach(list =>{
+        displayProjects(list);
+     })
 };
 
 
@@ -20,38 +25,37 @@ const displayProjects = (renderArrayItems) => {
     //render projectTextContainer
     const projectTextContainer = document.createElement('div');
     const projectAddedTitle = document.createElement('div');
-    const projectAddedDescription = document.createElement('div');
-    const projectAddedDate = document.createElement('div');
-    const projectAddedPrority = document.createElement('div');
+
     //render taskBtnContainer
     const taskBtnContainer = document.createElement('div');
     const addSubTask = document.createElement('button');
     const removeCurrentProject = document.createElement('button');
 
+    //dataset
+    projectContainer.dataset.listId = renderArrayItems.id;
+
     //classList
     projectContainer.classList.add('projectContainer');
     projectTextContainer.classList.add('projectTextContainer');
     projectAddedTitle.classList.add('projectAddedTitle');
-    projectAddedDescription.classList.add('projectAddedDescription');
-    projectAddedDate.classList.add('projectAddedDate');
-    projectAddedPrority.classList.add('projectAddedPrority');
     taskBtnContainer.classList.add('taskBtnContainer');
     addSubTask.classList.add('addSubTask');
     removeCurrentProject.classList.add('removeCurrentProject');
 
     //textContent
     projectAddedTitle.textContent = renderArrayItems.title;
-    projectAddedDescription.textContent = renderArrayItems.description;
-    projectAddedDate.textContent = renderArrayItems.date;
-    projectAddedPrority.textContent = renderArrayItems.priority;
+
+    /*
+    if(renderArrayItems.id === selectedListId){
+        projectContainer.classList.add('active-list');
+    }
+    */
+
     addSubTask.textContent = '+';
     removeCurrentProject.textContent ='-';
 
     //projectContainer.appendChild(projectAdded);
     projectTextContainer.appendChild(projectAddedTitle);
-    projectTextContainer.appendChild(projectAddedDescription);
-    projectTextContainer.appendChild(projectAddedDate);
-    projectTextContainer.appendChild(projectAddedPrority);
     projectContainer.appendChild(projectTextContainer);
     taskBtnContainer.appendChild(addSubTask);
     taskBtnContainer.appendChild(removeCurrentProject);
@@ -63,7 +67,7 @@ const displayProjects = (renderArrayItems) => {
     },{once:true});
 
     removeCurrentProject.addEventListener('click', () =>{
-        console.log(test.text);
+        //console.log(test.text);
     });
 
     const projectElem = document.querySelectorAll('.projectContainer');
@@ -71,17 +75,12 @@ const displayProjects = (renderArrayItems) => {
     
     for(let i = 0; i < projectElem.length; i++){
         projectElem[i].addEventListener('click',() =>{
-           console.log(projectElem[i]);
-           //test.showHideToggle();
+            console.log(projectElem[i]);
+
+            //active
         });
     }    
     
-    const classListElements = document.querySelectorAll('.projectContainer');
-
-    for(let i = 0; i < classListElements.length; i++){
-        classListElements[i].id = 'prj' + i;
-    }
-
 
 };
 

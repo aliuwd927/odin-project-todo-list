@@ -5,26 +5,29 @@ const projects = () =>{
     const submitButton = document.querySelector('.addToDoProjects');
 
     class TestOne {
-        constructor(title,description){
+        constructor(title){
             this.title = title;
-            this.description = description;
+            //this.description = description;
             this.consoleThis();
         }
 
         consoleThis(){
-            list.push({id: Date.now().toString(), title: this.title, description: this.description});
+            lists.push({id: Date.now().toString(), title: this.title});
         }
     };
 
     submitButton.addEventListener('click', () =>{
 
     const todoInputTitle = document.querySelector('.inputTitle').value;
-    const todoInputDescription = document.querySelector('.inputDescription').value;
-        
-    array.push(new TestOne(todoInputTitle,todoInputDescription));
+    //const todoInputDescription = document.querySelector('.inputDescription').value;
 
+    if(todoInputTitle == null || todoInputTitle === ''){
+        return false;
+    }else{
+        array.push(new TestOne(todoInputTitle));
+    }
+        
     document.querySelector('.inputTitle').value = '';
-    document.querySelector('.inputDescription').value = '';
      
     renderItems();
     });
@@ -32,11 +35,14 @@ const projects = () =>{
 
 };
 
+const LOCAL_STORAGE_LIST_KEY = 'task.lists';
+const LOCAL_STORAGE_SELECTED_LIST_ID_KEY = 'task.selectedListId';
 
 //List
 const array = [];
-const list = [];
+let lists = JSON.parse(localStorage.getItem(LOCAL_STORAGE_LIST_KEY)) || [];
+let selectedListId = localStorage.getItem(LOCAL_STORAGE_SELECTED_LIST_ID_KEY);
 
 export {projects};
-export {array};
-export {list};
+export {lists};
+export {selectedListId};

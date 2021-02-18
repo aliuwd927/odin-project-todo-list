@@ -1,17 +1,17 @@
 import { subTask } from './subTask';
 import {lists} from './projects';
 
+const LOCAL_STORAGE_LIST_KEY = 'title.title';
+const LOCAL_STORAGE_LIST_ID_KEY = 'title.title';
+let selectedListId = localStorage.getItem(LOCAL_STORAGE_LIST_ID_KEY);
+
 const renderItems = () =>{
-    removeChild();
-    /*
+    const leftBtmContainer = document.querySelector('.leftBottomContainer');
+    removeChild(leftBtmContainer);
     for(let i = 0; i < lists.length; i++){
         displayProjects(lists[i]);
      };
-     */
 
-     lists.forEach(list =>{
-        displayProjects(list);
-     })
 };
 
 
@@ -44,13 +44,6 @@ const displayProjects = (renderArrayItems) => {
 
     //textContent
     projectAddedTitle.textContent = renderArrayItems.title;
-
-    /*
-    if(renderArrayItems.id === selectedListId){
-        projectContainer.classList.add('active-list');
-    }
-    */
-
     addSubTask.textContent = '+';
     removeCurrentProject.textContent ='-';
 
@@ -62,6 +55,25 @@ const displayProjects = (renderArrayItems) => {
     projectContainer.appendChild(taskBtnContainer);
     leftBtmContainer.appendChild(projectContainer);
 
+    projectContainer.addEventListener('click' ,(e)=>{
+        //console.log(e.target.classList);
+        if(e.target.classList.value === 'projectContainer'){
+            //console.log(selectedListId);
+            selectedListId = e.target.dataset.listId;
+            saveToLocal();
+            lists.forEach(element =>{
+                if(element.id === selectedListId){
+                    projectContainer.classList.add('active-list');
+                }
+            })
+        }
+
+    });
+
+    const saveToLocal = () =>{
+        localStorage.setItem(LOCAL_STORAGE_LIST_KEY, JSON.stringify(lists));
+    }
+
     addSubTask.addEventListener('click', () => {
         subTask();
     },{once:true});
@@ -70,30 +82,35 @@ const displayProjects = (renderArrayItems) => {
         //console.log(test.text);
     });
 
-    const projectElem = document.querySelectorAll('.projectContainer');
-
-    
-    for(let i = 0; i < projectElem.length; i++){
-        projectElem[i].addEventListener('click',() =>{
-            console.log(projectElem[i]);
-
-            //active
-        });
-    }    
-    
-
 };
 
+/*
+const setActiveList =  () =>{
+    //console.log('test');
+    lists.forEach(element =>{
+        if(element.id === selectedListId){
+            const projectContainer = document.querySelector('.projectContainer');
+            projectContainer.classList.add('active-list');
+        }
+    })
+}
+*/
 
-const removeChild = () =>{
-    const leftBtmContainer = document.querySelector('.leftBottomContainer');
 
-    while(leftBtmContainer.firstChild){
-        leftBtmContainer.removeChild(leftBtmContainer.firstChild);
+const removeChild = (element) =>{
+    while(element.firstChild){
+        element.removeChild(element.firstChild);
     };
+
+    return{
+        renderItems,
+        displayProjects,
+        removeChild
+    }
 
 };
 
 
 export {displayProjects};
 export {renderItems};
+export {LOCAL_STORAGE_LIST_KEY};

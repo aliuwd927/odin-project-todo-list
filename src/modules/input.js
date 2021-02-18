@@ -11,19 +11,14 @@ const input = () =>{
 
     const inputContainer = document.createElement('div');
     inputContainer.classList.add('inputContainer');
+    inputContainer.dataset.newListForm = '';
 
 
     const todoInputTitle = document.createElement('input');
     todoInputTitle.classList.add('inputTitle');
+    todoInputTitle.dataset.newListInput = '';
     
-    //const todoInputDescription = document.createElement('input');
-    //todoInputDescription.classList.add('inputDescription');
-
-    //const todoDueDate = document.createElement('input');
-    //todoDueDate.classList.add('inputDueDate');
-
-    //const todoPriority = document.createElement('input');
-    //todoPriority.classList.add('inputPriority');
+ 
 
     const submitButton = document.createElement('button');
     submitButton.classList.add('addToDoProjects');
@@ -31,11 +26,9 @@ const input = () =>{
 
     const leftBottomContainer = document.createElement('div');
     leftBottomContainer.classList.add('leftBottomContainer');
+    leftBottomContainer.dataset.lists = '';
 
     inputContainer.appendChild(todoInputTitle);
-    //inputContainer.appendChild(todoInputDescription);
-    //inputContainer.appendChild(todoDueDate);
-    //inputContainer.appendChild(todoPriority);
     inputContainer.appendChild(submitButton);
     leftContent.appendChild(inputContainer);
     leftContent.appendChild(leftBottomContainer);

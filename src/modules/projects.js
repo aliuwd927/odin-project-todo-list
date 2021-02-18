@@ -1,4 +1,5 @@
 import{renderItems} from './displayProjects';
+import {LOCAL_STORAGE_LIST_KEY} from './displayProjects';
 
 const projects = () =>{
 
@@ -12,7 +13,7 @@ const projects = () =>{
         }
 
         consoleThis(){
-            lists.push({id: Date.now().toString(), title: this.title});
+            lists.push({id: Date.now().toString(), title: this.title, tasks:[]});
         }
     };
 
@@ -23,9 +24,10 @@ const projects = () =>{
 
     if(todoInputTitle == null || todoInputTitle === ''){
         return false;
-    }else{
-        array.push(new TestOne(todoInputTitle));
     }
+
+    array.push(new TestOne(todoInputTitle));
+    
         
     document.querySelector('.inputTitle').value = '';
      
@@ -35,14 +37,14 @@ const projects = () =>{
 
 };
 
-const LOCAL_STORAGE_LIST_KEY = 'task.lists';
-const LOCAL_STORAGE_SELECTED_LIST_ID_KEY = 'task.selectedListId';
+
+
 
 //List
 const array = [];
 let lists = JSON.parse(localStorage.getItem(LOCAL_STORAGE_LIST_KEY)) || [];
-let selectedListId = localStorage.getItem(LOCAL_STORAGE_SELECTED_LIST_ID_KEY);
+
 
 export {projects};
 export {lists};
-export {selectedListId};
+

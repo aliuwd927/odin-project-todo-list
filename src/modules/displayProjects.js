@@ -18,7 +18,6 @@ const render = () =>{
     listsContainer.addEventListener('click',(e) =>{
         if(e.target.tagName.toLowerCase() === 'li'){
             selectedListId = e.target.dataset.listId;
-           saveAndRender()
         }
     })
 
@@ -29,30 +28,26 @@ const render = () =>{
         if(listName == null || listName === ''){
             return false;
         }
-
         const list = createList(listName);
         newListInput.value = null;
         lists.push(list);
-
-        saveAndRender()
-        
-
+        saveAndRender();
     });
 
-    function createList(name){
+    const createList = (name) =>{
         return {id: Date.now().toString(), name: name, tasks: []};
     }
 
-    function saveAndRender(){
+    const saveAndRender = () => {
         save();
         renderItems();
     }
 
-    function save(){
+    const save = () =>{
         localStorage.setItem(LOCAL_STORAGE_LIST_KEY, JSON.stringify(lists));
     }
 
-    function renderItems(){
+    const renderItems = () =>{
         clearElement(listsContainer);
         lists.forEach(list =>{
             const listElement = document.createElement('li');
@@ -66,13 +61,11 @@ const render = () =>{
         })
     };
 
-   function clearElement(element){
+   const clearElement = (element) =>{
         while(element.firstChild){
             element.removeChild(element.firstChild);
         }
     }
-    renderItems();
-
 };
 
 

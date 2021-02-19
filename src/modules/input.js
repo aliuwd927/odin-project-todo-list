@@ -9,7 +9,7 @@ Input Value Should contain the following
 const input = () =>{
     const leftContent = document.querySelector('.leftContent');
 
-    const inputContainer = document.createElement('div');
+    const inputContainer = document.createElement('form');
     inputContainer.classList.add('inputContainer');
     inputContainer.dataset.newListForm = '';
 

@@ -1,116 +1,132 @@
-import { subTask } from './subTask';
-import {lists} from './projects';
-
-const LOCAL_STORAGE_LIST_KEY = 'title.title';
-const LOCAL_STORAGE_LIST_ID_KEY = 'title.title';
-let selectedListId = localStorage.getItem(LOCAL_STORAGE_LIST_ID_KEY);
-
-const renderItems = () =>{
-    const leftBtmContainer = document.querySelector('.leftBottomContainer');
-    removeChild(leftBtmContainer);
-    for(let i = 0; i < lists.length; i++){
-        displayProjects(lists[i]);
-     };
-
-};
 
 
-const displayProjects = (renderArrayItems) => {
- 
-    const leftBtmContainer = document.querySelector('.leftBottomContainer');
 
-    //render under leftBtmContainer
-    const projectContainer = document.createElement('div');
 
-    //render projectTextContainer
-    const projectTextContainer = document.createElement('div');
-    const projectAddedTitle = document.createElement('div');
 
-    //render taskBtnContainer
-    const taskBtnContainer = document.createElement('div');
-    const addSubTask = document.createElement('button');
-    const removeCurrentProject = document.createElement('button');
 
-    //dataset
-    projectContainer.dataset.listId = renderArrayItems.id;
+const render = () =>{
+    const listsContainer = document.querySelector('[data-lists]');
+    const newListForm = document.querySelector('[data-new-list-form]');
+    const newListInput = document.querySelector('[data-new-list-input]');
 
-    //classList
-    projectContainer.classList.add('projectContainer');
-    projectTextContainer.classList.add('projectTextContainer');
-    projectAddedTitle.classList.add('projectAddedTitle');
-    taskBtnContainer.classList.add('taskBtnContainer');
-    addSubTask.classList.add('addSubTask');
-    removeCurrentProject.classList.add('removeCurrentProject');
 
-    //textContent
-    projectAddedTitle.textContent = renderArrayItems.title;
-    addSubTask.textContent = '+';
-    removeCurrentProject.textContent ='-';
+    const LOCAL_STORAGE_LIST_KEY = 'task.lists';
+    const LOCAL_STORAGE_SELECTED_LIST_ID_KEY = 'task.lists';
+    let lists = JSON.parse(localStorage.getItem(LOCAL_STORAGE_LIST_KEY)) || [];
+    let selectedListId = localStorage.getItem(LOCAL_STORAGE_SELECTED_LIST_ID_KEY);
 
-    //projectContainer.appendChild(projectAdded);
-    projectTextContainer.appendChild(projectAddedTitle);
-    projectContainer.appendChild(projectTextContainer);
-    taskBtnContainer.appendChild(addSubTask);
-    taskBtnContainer.appendChild(removeCurrentProject);
-    projectContainer.appendChild(taskBtnContainer);
-    leftBtmContainer.appendChild(projectContainer);
-
-    projectContainer.addEventListener('click' ,(e)=>{
-        //console.log(e.target.classList);
-        if(e.target.classList.value === 'projectContainer'){
-            //console.log(selectedListId);
+    listsContainer.addEventListener('click',(e) =>{
+        if(e.target.tagName.toLowerCase() === 'li'){
             selectedListId = e.target.dataset.listId;
-            saveToLocal();
-            lists.forEach(element =>{
-                if(element.id === selectedListId){
-                    projectContainer.classList.add('active-list');
-                }
-            })
+           saveAndRender()
         }
+    })
+
+    newListForm.addEventListener('submit', (e)=>{
+        e.preventDefault();
+        const listName = newListInput.value;
+        console.log(listName);
+        if(listName == null || listName === ''){
+            return false;
+        }
+
+        const list = createList(listName);
+        newListInput.value = null;
+        lists.push(list);
+
+        saveAndRender()
+        
 
     });
 
-    const saveToLocal = () =>{
+    function createList(name){
+        return {id: Date.now().toString(), name: name, tasks: []};
+    }
+
+    function saveAndRender(){
+        save();
+        renderItems();
+    }
+
+    function save(){
         localStorage.setItem(LOCAL_STORAGE_LIST_KEY, JSON.stringify(lists));
     }
 
-    addSubTask.addEventListener('click', () => {
-        subTask();
-    },{once:true});
-
-    removeCurrentProject.addEventListener('click', () =>{
-        //console.log(test.text);
-    });
-
-};
-
-/*
-const setActiveList =  () =>{
-    //console.log('test');
-    lists.forEach(element =>{
-        if(element.id === selectedListId){
-            const projectContainer = document.querySelector('.projectContainer');
-            projectContainer.classList.add('active-list');
-        }
-    })
-}
-*/
-
-
-const removeChild = (element) =>{
-    while(element.firstChild){
-        element.removeChild(element.firstChild);
+    function renderItems(){
+        clearElement(listsContainer);
+        lists.forEach(list =>{
+            const listElement = document.createElement('li');
+            listElement.dataset.listId = list.id;
+            listElement.classList.add('list-name');
+            listElement.textContent = list.name;
+            if(list.id === selectedListId){
+                listElement.classList.add('active-list');
+            }
+            listsContainer.appendChild(listElement);
+        })
     };
 
-    return{
-        renderItems,
-        displayProjects,
-        removeChild
+   function clearElement(element){
+        while(element.firstChild){
+            element.removeChild(element.firstChild);
+        }
     }
+    renderItems();
 
 };
 
 
-export {displayProjects};
-export {renderItems};
-export {LOCAL_STORAGE_LIST_KEY};
+
+
+export {render};
+
+
+
+
+
+/// Debug Day Notes:
+/*
+    - Code Pulled from projects.js
+    - Bug issue with how the active list is performing
+        *Bug Issue-1: active-list gets pended on every projectContainer div tag;
+            Remedy: Tested YT tutorial, confirmed that active-list IS selectable regardless of tagName,...
+            combine project.js code to displayProjects.js and refactor to fix.
+        
+
+
+*/
+
+// ---ReFactor Below ---
+
+/*
+   
+
+    class TestOne {
+        constructor(title){
+            this.title = title;
+            //this.description = description;
+            this.consoleThis();
+        }
+
+        consoleThis(){
+            lists.push({id: Date.now().toString(), title: this.title, tasks:[]});
+        }
+    };
+
+    submitButton.addEventListener('click', () =>{
+
+    const todoInputTitle = document.querySelector('.inputTitle').value;
+
+    if(todoInputTitle == null || todoInputTitle === ''){
+        return false;
+    }
+
+    array.push(new TestOne(todoInputTitle));
+    
+        
+    document.querySelector('.inputTitle').value = '';
+     
+
+    });
+
+*/

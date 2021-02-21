@@ -11,13 +11,14 @@ const render = () =>{
 
 
     const LOCAL_STORAGE_LIST_KEY = 'task.lists';
-    const LOCAL_STORAGE_SELECTED_LIST_ID_KEY = 'task.lists';
+    const LOCAL_STORAGE_SELECTED_LIST_ID_KEY = 'task.selectedListsId';
     let lists = JSON.parse(localStorage.getItem(LOCAL_STORAGE_LIST_KEY)) || [];
     let selectedListId = localStorage.getItem(LOCAL_STORAGE_SELECTED_LIST_ID_KEY);
 
     listsContainer.addEventListener('click',(e) =>{
         if(e.target.tagName.toLowerCase() === 'li'){
             selectedListId = e.target.dataset.listId;
+            saveAndRender();
         }
     })
 
@@ -45,6 +46,7 @@ const render = () =>{
 
     const save = () =>{
         localStorage.setItem(LOCAL_STORAGE_LIST_KEY, JSON.stringify(lists));
+        localStorage.setItem(LOCAL_STORAGE_SELECTED_LIST_ID_KEY, selectedListId);
     }
 
     const renderItems = () =>{

@@ -1,4 +1,4 @@
-import{render} from './displayProjects';
+import{render} from './controller';
 
 const projects = () =>{
     const submitButton = document.querySelector('.addToDoProjects');

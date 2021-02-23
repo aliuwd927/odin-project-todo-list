@@ -1,9 +1,0 @@
-
-const localStorage = () => {
-
-    
-
-};
-
-export {localStorage};
-

@@ -24,12 +24,18 @@ const input = () =>{
     submitButton.classList.add('addToDoProjects');
     submitButton.textContent = 'add to projects';
 
+    const deleteButton = document.createElement('button');
+    deleteButton.classList.add('deleteButton');
+    deleteButton.dataset.deleteListButton = '';
+    deleteButton.textContent = 'Delete List';
+
     const leftBottomContainer = document.createElement('div');
     leftBottomContainer.classList.add('leftBottomContainer');
     leftBottomContainer.dataset.lists = '';
 
     inputContainer.appendChild(todoInputTitle);
     inputContainer.appendChild(submitButton);
+    inputContainer.appendChild(deleteButton);
     leftContent.appendChild(inputContainer);
     leftContent.appendChild(leftBottomContainer);
 

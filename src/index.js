@@ -7,7 +7,6 @@ import {rightContent} from './modules/rightContentContainer';
 
 
  function componentContent() {
-  localStorage();
   leftContent();
   input();
   projects();

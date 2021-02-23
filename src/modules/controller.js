@@ -1,47 +1,20 @@
 
 
-const render = () =>{
+const renderItems = () =>{
     const listsContainer = document.querySelector('[data-lists]');
     const newListForm = document.querySelector('[data-new-list-form]');
     const newListInput = document.querySelector('[data-new-list-input]');
     const deleteButton = document.querySelector('[data-delete-list-button]');
+    const listDisplayContainer = document.querySelector('[data-list-display-container]');
+    const listTitleElement = document.querySelector('[data-list-title]');
+    const listCountElement = document.querySelector('[data-list-count]');
+    const tasksContainer = document.querySelector('[data-tasks]');
 
 
     const LOCAL_STORAGE_LIST_KEY = 'task.lists';
     const LOCAL_STORAGE_SELECTED_LIST_ID_KEY = 'task.selectedListsId';
     let lists = JSON.parse(localStorage.getItem(LOCAL_STORAGE_LIST_KEY)) || [];
     let selectedListId = localStorage.getItem(LOCAL_STORAGE_SELECTED_LIST_ID_KEY);
-
-
-    const createList = (name) =>{
-        return {id: Date.now().toString(), name: name, tasks: []};
-    }
-
-
-    const save = () =>{
-        localStorage.setItem(LOCAL_STORAGE_LIST_KEY, JSON.stringify(lists));
-        localStorage.setItem(LOCAL_STORAGE_SELECTED_LIST_ID_KEY, selectedListId);
-    }
-
-    const renderItems = () =>{
-        clearElement(listsContainer);
-        lists.forEach(list =>{
-            const listElement = document.createElement('li');
-            listElement.dataset.listId = list.id;
-            listElement.classList.add('list-name');
-            listElement.textContent = list.name;
-            if(list.id === selectedListId){
-                listElement.classList.add('active-list');
-            }
-            listsContainer.appendChild(listElement);
-        })
-    };
-
-   const clearElement = (element) =>{
-        while(element.firstChild){
-            element.removeChild(element.firstChild);
-        }
-    }
 
     listsContainer.addEventListener('click',(e) =>{
         if(e.target.tagName.toLowerCase() === 'li'){
@@ -69,14 +42,66 @@ const render = () =>{
         saveAndRender();
     });
 
+    const createList = (name) =>{
+        return {id: Date.now().toString(), name: name, tasks: []};
+    }
+
+
+    const save = () =>{
+        localStorage.setItem(LOCAL_STORAGE_LIST_KEY, JSON.stringify(lists));
+        localStorage.setItem(LOCAL_STORAGE_SELECTED_LIST_ID_KEY, selectedListId);
+    }
+
+    const render =() =>{
+        clearElement(listsContainer);
+        renderList();
+
+        const selectedList = lists.find(list => list.id === selectedListId);
+        if (selectedListId == null) {
+            listDisplayContainer.style.display = 'none'
+          } else{
+            listDisplayContainer.style.display = '';
+            listTitleElement.textContent = selectedList.name;
+            console.log(selectedListId);
+            clearElement(tasksContainer);
+            renderTasks(selectedList);
+        }
+    }
+
+    const renderTasks = (selectedList) =>{
+        selectedList.forEach(task =>{
+            
+        })
+    }
+
+    const renderList = () =>{
+        lists.forEach(list =>{
+            const listElement = document.createElement('li');
+            listElement.dataset.listId = list.id;
+            listElement.classList.add('list-name');
+            listElement.textContent = list.name;
+            if(list.id === selectedListId){
+                listElement.classList.add('active-list');
+            }
+            listsContainer.appendChild(listElement);
+        })
+    };
+
+   const clearElement = (element) =>{
+        while(element.firstChild){
+            element.removeChild(element.firstChild);
+        }
+    }
+
+
     const saveAndRender = () => {
         save();
-        renderItems();
+        render();
     }
 };
 
 
 
 
-export {render};
+export {renderItems};
 /// Debug Day Notes:

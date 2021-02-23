@@ -1,10 +1,3 @@
-/*
-Input Value Should contain the following
-- Title
-- Descrption
-- Due Date
-- Priority
-*/
 
 const input = () =>{
     const leftContent = document.querySelector('.leftContent');

@@ -6,12 +6,9 @@ const input = () =>{
     inputContainer.classList.add('inputContainer');
     inputContainer.dataset.newListForm = '';
 
-
     const todoInputTitle = document.createElement('input');
     todoInputTitle.classList.add('inputTitle');
     todoInputTitle.dataset.newListInput = '';
-    
- 
 
     const submitButton = document.createElement('button');
     submitButton.classList.add('addToDoProjects');

@@ -7,8 +7,11 @@ const renderItems = () =>{
     const deleteButton = document.querySelector('[data-delete-list-button]');
     const listDisplayContainer = document.querySelector('[data-list-display-container]');
     const listTitleElement = document.querySelector('[data-list-title]');
-    const listCountElement = document.querySelector('[data-list-count]');
+    const taskTemplate = document.getElementById('task-template');
     const tasksContainer = document.querySelector('[data-tasks]');
+    const newTaskForm = document.querySelector('[data-new-task-form]');
+    const newTaskInput = document.querySelector('[data-new-task-input]');
+
 
 
     const LOCAL_STORAGE_LIST_KEY = 'task.lists';
@@ -20,7 +23,7 @@ const renderItems = () =>{
         if(e.target.tagName.toLowerCase() === 'li'){
             selectedListId = e.target.dataset.listId;
             saveAndRender();
-        }
+        };
     });
 
     deleteButton.addEventListener('click',(e)=>{
@@ -32,25 +35,40 @@ const renderItems = () =>{
     newListForm.addEventListener('submit', (e)=>{
         e.preventDefault();
         const listName = newListInput.value;
-        console.log(listName);
         if(listName == null || listName === ''){
             return false;
-        }
+        };
         const list = createList(listName);
         newListInput.value = null;
         lists.push(list);
         saveAndRender();
     });
 
-    const createList = (name) =>{
-        return {id: Date.now().toString(), name: name, tasks: []};
-    }
+    newTaskForm.addEventListener('submit', (e)=>{
+        e.preventDefault();
+        const taskName = newTaskInput.value;
+        if(taskName == null || taskName === ''){
+            return false;
+        };
+        const task = createTask(taskName);
+        newTaskInput.value = null;
+        const selectedList = lists.find(list => list.id === selectedListId);
+        selectedList.tasks.push(task);
+        saveAndRender();
+    });
 
+    const createList = (name) =>{
+        return {id: Date.now().toString(), name: name, tasks:[]};
+    };
+
+    const createTask = (name) =>{
+        return { id: Date.now().toString(), name: name, complete: false};
+    };
 
     const save = () =>{
         localStorage.setItem(LOCAL_STORAGE_LIST_KEY, JSON.stringify(lists));
         localStorage.setItem(LOCAL_STORAGE_SELECTED_LIST_ID_KEY, selectedListId);
-    }
+    };
 
     const render =() =>{
         clearElement(listsContainer);
@@ -61,18 +79,24 @@ const renderItems = () =>{
             listDisplayContainer.style.display = 'none'
           } else{
             listDisplayContainer.style.display = '';
-            listTitleElement.textContent = selectedList.name;
-            console.log(selectedListId);
+            listTitleElement.innerText = selectedList.name;
             clearElement(tasksContainer);
             renderTasks(selectedList);
         }
-    }
+    };
 
     const renderTasks = (selectedList) =>{
-        selectedList.forEach(task =>{
-            
-        })
-    }
+        selectedList.tasks.forEach(task => {
+            const taskElement = document.importNode(taskTemplate.content, true);
+            const checkbox = taskElement.querySelector('input');
+            checkbox.id = task.id;
+            checkbox.checked = task.complete;
+            const label = taskElement.querySelector('label');
+            label.htmlFor = task.id;
+            label.append(task.name);
+            tasksContainer.appendChild(taskElement);
+          });
+    };
 
     const renderList = () =>{
         lists.forEach(list =>{
@@ -84,14 +108,14 @@ const renderItems = () =>{
                 listElement.classList.add('active-list');
             }
             listsContainer.appendChild(listElement);
-        })
+        });
     };
 
    const clearElement = (element) =>{
         while(element.firstChild){
             element.removeChild(element.firstChild);
         }
-    }
+    };
 
 
     const saveAndRender = () => {
@@ -100,8 +124,4 @@ const renderItems = () =>{
     }
 };
 
-
-
-
 export {renderItems};
-/// Debug Day Notes:

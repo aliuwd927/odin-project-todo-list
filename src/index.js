@@ -3,13 +3,11 @@ import {input} from './modules/input';
 import {projects} from './modules/projects';
 import {rightContent} from './modules/rightContentContainer';
 
-
-
- function componentContent() {
-  leftContent();
-  input();
-  projects();
-  rightContent();
+const componentContent = () =>{
+    leftContent();
+    input();
+    projects();
+    rightContent();
  };
  
  componentContent();

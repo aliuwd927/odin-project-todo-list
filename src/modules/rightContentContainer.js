@@ -44,7 +44,6 @@ const rightContent = () =>{
     addTaskButton.classList.add('addTaskButton');
     addTaskButton.textContent = 'add Task';
 
-    
     todoHeader.appendChild(todoTaskListTitle);
     todoHeader.appendChild(todoTaskCount);
     todoBody.appendChild(todoTask);
